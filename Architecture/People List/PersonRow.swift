@@ -24,7 +24,7 @@ extension PersonRow: View {
             case .closed:
                 EmptyView()
             case let .loaded(bio):
-                Text(bio.description)
+                Text("Description: \(bio.description)")
             case .loading:
                 ProgressView()
             }

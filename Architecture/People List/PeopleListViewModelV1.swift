@@ -2,7 +2,7 @@ import AsyncAlgorithms
 import Combine
 import SwiftUI
 
-@MainActor final class PeopleListViewModelV1: ObservableObject {
+final class PeopleListViewModelV1: ObservableObject {
     @Published private(set) var viewState: State = .loading
     @Published private(set) var viewEffect: Effect = .none
 
@@ -24,7 +24,9 @@ import SwiftUI
                 switch intent {
                 case .initialLoad:
                     let people = try await personService.fetchAsync()
-                    viewState = .loaded(.init(openedBios: openedBios, bios: bios, people: people))
+                    await MainActor.run {
+                        viewState = .loaded(.init(openedBios: openedBios, bios: bios, people: people))
+                    }
                 case .personTapped(let person):
                     guard case let .loaded(viewData) = viewState else { return }
                     if openedBios.contains(person) {
@@ -33,16 +35,22 @@ import SwiftUI
                         openedBios.insert(person)
                     }
 
-                    viewState = .loaded(viewData.copy(openedBios: openedBios, bios: bios))
+                    await MainActor.run {
+                        viewState = .loaded(viewData.copy(openedBios: openedBios, bios: bios))
+                    }
 
                     if bios[person] == nil {
                         bios[person] = try await bioService.fetchAsync(id: person.id)
                     }
 
-                    viewState = .loaded(viewData.copy(openedBios: openedBios, bios: bios))
+                    await MainActor.run {
+                        viewState = .loaded(viewData.copy(openedBios: openedBios, bios: bios))
+                    }
                 }
             } catch {
-                viewEffect = .showError(message: error.localizedDescription)
+                await MainActor.run {
+                    viewEffect = .showError(message: error.localizedDescription)
+                }
             }
         }
     }

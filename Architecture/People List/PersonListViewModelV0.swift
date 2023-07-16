@@ -1,6 +1,9 @@
 import Combine
 import SwiftUI
 
+// 1. Run and discuss app
+// 2. Point out similarities with current design (Event -> Intent, Effects, States)
+
 final class PeopleListViewModelV0: ObservableObject {
     @Published private(set) var viewState: State = .loading
 
