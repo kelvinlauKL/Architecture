@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct PeopleListView {
-    @ObservedObject private(set) var viewModel: PeopleListViewModelV2
+    private let viewModel: PeopleListViewModelV3
 
-    init(viewModel: PeopleListViewModelV2) {
+    init(viewModel: PeopleListViewModelV3) {
         self.viewModel = viewModel
     }
 }

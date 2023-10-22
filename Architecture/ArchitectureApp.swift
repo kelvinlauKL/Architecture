@@ -11,8 +11,8 @@ import SwiftUI
 struct ArchitectureApp: App {
     var body: some Scene {
         WindowGroup {
-//            PeopleListView(viewModel: .init(personService: MockPersonService(delay: 2), bioService: MockBioService()))
-            PeopleListViewRedux(viewModel: PersonListStoreV1(middleware: PersonServiceMiddleware(service: MockPersonService(delay: 2)), initialStateValue: .initial))
+            PeopleListView(viewModel: .init(personService: MockPersonService(delay: 2), bioService: MockBioService()))
+//            PeopleListViewRedux(viewModel: PersonListStoreV1(middleware: PersonServiceMiddleware(service: MockPersonService(delay: 2)), initialStateValue: .initial))
         }
     }
 }
