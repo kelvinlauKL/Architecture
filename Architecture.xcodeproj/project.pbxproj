@@ -29,13 +29,6 @@
 		60D9C1632A250F6E0082641B /* PeopleListViewModelV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D9C1622A250F6E0082641B /* PeopleListViewModelV1.swift */; };
 		60D9C1652A251DBC0082641B /* Bio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D9C1642A251DBC0082641B /* Bio.swift */; };
 		60D9C1682A2523D50082641B /* BioServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D9C1672A2523D50082641B /* BioServiceType.swift */; };
-		60DCBCD92A644D360088D64F /* StateStoreV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DCBCD82A644D360088D64F /* StateStoreV1.swift */; };
-		60DCBCDB2A6456A80088D64F /* PersonListStoreV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DCBCDA2A6456A80088D64F /* PersonListStoreV1.swift */; };
-		60DCBCDD2A6456D40088D64F /* PersonListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DCBCDC2A6456D40088D64F /* PersonListState.swift */; };
-		60DCBCDF2A6457DA0088D64F /* PersonListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DCBCDE2A6457DA0088D64F /* PersonListIntent.swift */; };
-		60DCBCE12A64581D0088D64F /* PersonListEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DCBCE02A64581D0088D64F /* PersonListEffect.swift */; };
-		60DCBCE42A647EAD0088D64F /* PersonListViewRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DCBCE32A647EAD0088D64F /* PersonListViewRedux.swift */; };
-		60DCBCE62A6485D70088D64F /* PersonServiceMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DCBCE52A6485D70088D64F /* PersonServiceMiddleware.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,13 +71,6 @@
 		60D9C1642A251DBC0082641B /* Bio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bio.swift; sourceTree = "<group>"; };
 		60D9C1672A2523D50082641B /* BioServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioServiceType.swift; sourceTree = "<group>"; };
 		60D9C1692A252B470082641B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		60DCBCD82A644D360088D64F /* StateStoreV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStoreV1.swift; sourceTree = "<group>"; };
-		60DCBCDA2A6456A80088D64F /* PersonListStoreV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListStoreV1.swift; sourceTree = "<group>"; };
-		60DCBCDC2A6456D40088D64F /* PersonListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListState.swift; sourceTree = "<group>"; };
-		60DCBCDE2A6457DA0088D64F /* PersonListIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListIntent.swift; sourceTree = "<group>"; };
-		60DCBCE02A64581D0088D64F /* PersonListEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListEffect.swift; sourceTree = "<group>"; };
-		60DCBCE32A647EAD0088D64F /* PersonListViewRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListViewRedux.swift; sourceTree = "<group>"; };
-		60DCBCE52A6485D70088D64F /* PersonServiceMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonServiceMiddleware.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +112,6 @@
 				60D9C1622A250F6E0082641B /* PeopleListViewModelV1.swift */,
 				60C07FB22A2F91AD00329D3C /* PersonListViewModelV2.swift */,
 				60C07FB42A2FC33D00329D3C /* PersonListViewModelV3.swift */,
-				60DCBCD72A6447380088D64F /* Redux */,
 			);
 			path = "People List";
 			sourceTree = "<group>";
@@ -208,28 +193,6 @@
 				60D9C1672A2523D50082641B /* BioServiceType.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		60DCBCD72A6447380088D64F /* Redux */ = {
-			isa = PBXGroup;
-			children = (
-				60DCBCD82A644D360088D64F /* StateStoreV1.swift */,
-				60DCBCE22A647C800088D64F /* V1 */,
-			);
-			path = Redux;
-			sourceTree = "<group>";
-		};
-		60DCBCE22A647C800088D64F /* V1 */ = {
-			isa = PBXGroup;
-			children = (
-				60DCBCE32A647EAD0088D64F /* PersonListViewRedux.swift */,
-				60DCBCDA2A6456A80088D64F /* PersonListStoreV1.swift */,
-				60DCBCDC2A6456D40088D64F /* PersonListState.swift */,
-				60DCBCDE2A6457DA0088D64F /* PersonListIntent.swift */,
-				60DCBCE02A64581D0088D64F /* PersonListEffect.swift */,
-				60DCBCE52A6485D70088D64F /* PersonServiceMiddleware.swift */,
-			);
-			path = V1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,17 +339,10 @@
 				60B1375C2A1846EA0066BA9E /* ContentView.swift in Sources */,
 				60C07FB32A2F91AD00329D3C /* PersonListViewModelV2.swift in Sources */,
 				60C07FB52A2FC33D00329D3C /* PersonListViewModelV3.swift in Sources */,
-				60DCBCDF2A6457DA0088D64F /* PersonListIntent.swift in Sources */,
-				60DCBCD92A644D360088D64F /* StateStoreV1.swift in Sources */,
-				60DCBCDD2A6456D40088D64F /* PersonListState.swift in Sources */,
 				608EA9B62A252F0000DE5346 /* PersonRow.swift in Sources */,
 				60B1375A2A1846EA0066BA9E /* ArchitectureApp.swift in Sources */,
 				60B137872A1866610066BA9E /* Person.swift in Sources */,
 				60D9C1632A250F6E0082641B /* PeopleListViewModelV1.swift in Sources */,
-				60DCBCE42A647EAD0088D64F /* PersonListViewRedux.swift in Sources */,
-				60DCBCDB2A6456A80088D64F /* PersonListStoreV1.swift in Sources */,
-				60DCBCE62A6485D70088D64F /* PersonServiceMiddleware.swift in Sources */,
-				60DCBCE12A64581D0088D64F /* PersonListEffect.swift in Sources */,
 				60D9C1682A2523D50082641B /* BioServiceType.swift in Sources */,
 				608EA9BC2A2668A100DE5346 /* PersonListViewModelV0.swift in Sources */,
 				60D9C1652A251DBC0082641B /* Bio.swift in Sources */,
