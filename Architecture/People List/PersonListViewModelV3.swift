@@ -1,52 +1,48 @@
 import AsyncAlgorithms
 import Combine
-import Observation
 import SwiftUI
 
-@Observable final class PeopleListViewModelV3 {
+@MainActor final class PeopleListViewModelV3: ObservableObject {
     private let personService: PersonServiceType
     private let bioService: BioServiceType
 
-    private(set) var isLoading: Bool = true
-    private(set) var openedBios: Set<Person> = []
-    private(set) var bios: [Person: Bio] = [:]
-    private(set) var people: [Person] = []
-    private(set) var viewEffect: Effect = .none
+    @Published private(set) var state: State = .init()
+    @Published private(set) var effect: Effect = .none
 
     init(personService: PersonServiceType, bioService: BioServiceType) {
         self.personService = personService
         self.bioService = bioService
-        process(intent: .initialLoad)
     }
 
-    func process(intent: Intent) {
-        Task {
-            do {
-                switch intent {
-                case .initialLoad:
-                    people = try await personService.fetchAsync()
-                    isLoading = false
-                case .personTapped(let person):
-                    if openedBios.contains(person) {
-                        openedBios.remove(person)
-                    } else {
-                        openedBios.insert(person)
-                    }
+    func fetchInitial() async {
+        do {
+            state.people = try await personService.fetchAsync()
+            state.isLoading = false
+        } catch {
+            effect = .showError(error)
+        }
+    }
 
-                    if bios[person] == nil {
-                        bios[person] = try await bioService.fetchAsync(id: person.id)
-                    }
-                }
-            } catch {
-                viewEffect = .showError(message: error.localizedDescription)
+    func personTapped(person: Person) async {
+        do {
+            if state.openedBios.contains(person) {
+                state.openedBios.remove(person)
+            } else {
+                state.openedBios.insert(person)
             }
+
+            if state.bios[person] == nil {
+                state.bios[person] = try await bioService.fetchAsync(id: person.id)
+            }
+        } catch {
+            effect = .showError(error)
         }
     }
 
     func biosState(for person: Person) -> PersonRow.BioState {
-        if openedBios.contains(person), let bios = bios[person] {
+        if state.openedBios.contains(person), let bios = state.bios[person] {
             return .loaded(bios)
-        } else if openedBios.contains(person) {
+        } else if state.openedBios.contains(person) {
             return .loading
         } else {
             return .closed
@@ -54,15 +50,26 @@ import SwiftUI
     }
 }
 
-// MARK: - MVI
 extension PeopleListViewModelV3 {
-    enum Intent: Equatable {
-        case initialLoad
-        case personTapped(Person)
+    struct State {
+        var isLoading: Bool = true
+        var openedBios: Set<Person> = []
+        var bios: [Person: Bio] = [:]
+        var people: [Person] = []
     }
 
     enum Effect: Equatable {
         case none
-        case showError(message: String)
+        case showError(Error)
+
+        static func == (lhs: Effect, rhs: Effect) -> Bool {
+            switch (lhs, rhs) {
+            case (.none, .none):
+                return true
+            case let (.showError(lError), .showError(rError)):
+                return lError.localizedDescription == rError.localizedDescription
+            default: return false
+            }
+        }
     }
 }

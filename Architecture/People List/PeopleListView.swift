@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PeopleListView {
-    private let viewModel: PeopleListViewModelV3
+    @ObservedObject private(set) var viewModel: PeopleListViewModelV3
 
     init(viewModel: PeopleListViewModelV3) {
         self.viewModel = viewModel
@@ -11,13 +11,20 @@ struct PeopleListView {
 // MARK: - View
 extension PeopleListView: View {
     var body: some View {
-        if viewModel.isLoading {
+        if viewModel.state.isLoading {
             ProgressView()
+                .onLoad {
+                    Task {
+                        await viewModel.fetchInitial()
+                    }
+                }
         } else {
-            List(viewModel.people) { person in
+            List(viewModel.state.people) { person in
                 PersonRow(person: person, bioState: viewModel.biosState(for: person))
                     .onTapGesture {
-                        viewModel.process(intent: .personTapped(person))
+                        Task {
+                            await viewModel.personTapped(person: person)
+                        }
                     }
             }
             .listStyle(.plain)
@@ -31,7 +38,6 @@ struct PeopleListView_Previews: PreviewProvider {
             .previewDisplayName("Loaded")
         PeopleListView(viewModel: .init(personService: MockPersonService(delay: 2), bioService: MockBioService()))
             .previewDisplayName("Loading")
-
     }
 }
 

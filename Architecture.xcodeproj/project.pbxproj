@@ -11,6 +11,7 @@
 		602209E02A24F5CF0022898E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 602209DF2A24F5CF0022898E /* RxCocoa */; };
 		602209E22A24F5CF0022898E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 602209E12A24F5CF0022898E /* RxRelay */; };
 		602209E42A24F5CF0022898E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 602209E32A24F5CF0022898E /* RxSwift */; };
+		604327242AF367A500126635 /* OnLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604327232AF367A500126635 /* OnLoad.swift */; };
 		608EA9B62A252F0000DE5346 /* PersonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608EA9B52A252F0000DE5346 /* PersonRow.swift */; };
 		608EA9BC2A2668A100DE5346 /* PersonListViewModelV0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608EA9BB2A2668A100DE5346 /* PersonListViewModelV0.swift */; };
 		608EA9BF2A26B7A000DE5346 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 608EA9BE2A26B7A000DE5346 /* AsyncAlgorithms */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		604327232AF367A500126635 /* OnLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnLoad.swift; sourceTree = "<group>"; };
 		608EA9B52A252F0000DE5346 /* PersonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRow.swift; sourceTree = "<group>"; };
 		608EA9BB2A2668A100DE5346 /* PersonListViewModelV0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListViewModelV0.swift; sourceTree = "<group>"; };
 		60B137562A1846EA0066BA9E /* Architecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Architecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		604327222AF3679300126635 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				604327232AF367A500126635 /* OnLoad.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		608EA9B42A252EEF00DE5346 /* People List */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +149,7 @@
 		60B137582A1846EA0066BA9E /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				604327222AF3679300126635 /* Helpers */,
 				60D9C1692A252B470082641B /* Info.plist */,
 				60B137592A1846EA0066BA9E /* ArchitectureApp.swift */,
 				608EA9B42A252EEF00DE5346 /* People List */,
@@ -348,6 +359,7 @@
 				60D9C1652A251DBC0082641B /* Bio.swift in Sources */,
 				60D9C1612A250F310082641B /* PeopleListView.swift in Sources */,
 				60B137852A1865E80066BA9E /* PersonServiceType.swift in Sources */,
+				604327242AF367A500126635 /* OnLoad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
