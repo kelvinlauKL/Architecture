@@ -48,30 +48,6 @@ final class PeopleListViewModelV0: ObservableObject {
                 self.viewState = .loaded(.init(openedBios: self.openedBios, bios: self.bios, people: people))
             }
             .store(in: &cancellables)
-
-//        intentPublisher.combineLatest($viewState.eraseToAnyPublisher())
-//            .compactMap { intent, viewState -> (Person, [Person])? in
-//                guard case let .personTapped(person) = intent else { return nil }
-//                return person
-//            }
-//            .flatMap { person -> AnyPublisher<(Person, Bio), Error> in
-//                bioService.fetchFuture(id: person.id)
-//                    .map { bio in (person, bio) }
-//                    .eraseToAnyPublisher()
-//            }
-//            .sink { [weak self] completion in
-//                guard let self = self else { return }
-//                switch completion {
-//                case let .failure(error):
-//                    self.effectSubject.send(.showError(message: error.localizedDescription))
-//                case .finished: return
-//                }
-//            } receiveValue: { [weak self] (person, bio) in
-//                guard let self = self else { return }
-//                self.bios[person] = bio
-//                self.viewState = .loaded(.init(openedBios: self.openedBios, bios: self.bios, people: people))
-//            }
-//            .store(in: &cancellables)
     }
 
     func process(intent: Intent) {
