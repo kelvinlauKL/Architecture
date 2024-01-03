@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct PeopleListView {
-    @ObservedObject private(set) var viewModel: PeopleListViewModelV3
+    @ObservedObject private(set) var viewModel: PeopleListViewModelV0
 
-    init(viewModel: PeopleListViewModelV3) {
+    init(viewModel: PeopleListViewModelV0) {
         self.viewModel = viewModel
     }
 }
@@ -11,20 +11,17 @@ struct PeopleListView {
 // MARK: - View
 extension PeopleListView: View {
     var body: some View {
-        if viewModel.state.isLoading {
+        switch viewModel.viewState {
+        case .loading:
             ProgressView()
                 .onLoad {
-                    Task {
-                        await viewModel.fetchInitial()
-                    }
+                    viewModel.process(intent: .initialLoad)
                 }
-        } else {
-            List(viewModel.state.people) { person in
-                PersonRow(person: person, bioState: viewModel.biosState(for: person))
+        case .loaded(let data):
+            List(data.people) { person in
+                PersonRow(person: person, bioState: data.biosState(for: person))
                     .onTapGesture {
-                        Task {
-                            await viewModel.personTapped(person: person)
-                        }
+                        viewModel.process(intent: .personTapped(person))
                     }
             }
             .listStyle(.plain)
